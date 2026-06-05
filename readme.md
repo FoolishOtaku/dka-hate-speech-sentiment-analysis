@@ -142,12 +142,11 @@ Project ini mengimplementasikan dua metode fuzzy:
 
 Ringkasan performa dari notebook:
 
-| Sistem                | Accuracy | F1-Score | ROC-AUC |
-| --------------------- | -------: | -------: | ------: |
-| BiLSTM Standalone     |   0.8884 |   0.8866 |  0.9515 |
-| Fuzzy Mamdani         |   0.6658 |   0.5969 |  0.6094 |
-| Fuzzy Sugeno          |   0.6658 |   0.5969 |  0.6084 |
-| Hybrid LSTM + Mamdani |   0.6658 |   0.5969 |  0.6094 |
+BiLSTM Standalone | Accuracy 0.9169 | F1 0.9158 | AUC 0.9640
+Pure Fuzzy Mamdani | Accuracy 0.7154 | F1 0.6783 | AUC 0.8812
+Pure Fuzzy Sugeno | Accuracy 0.7113 | F1 0.6724 | AUC 0.9043
+Hybrid LSTM + Mamdani | Accuracy 0.6614 | F1 0.6022 | AUC 0.5974
+Hybrid LSTM + Sugeno | Accuracy 0.6624 | F1 0.6028 | AUC 0.4892
 
 Dari hasil eksperimen, model **BiLSTM standalone** memiliki performa klasifikasi terbaik. Namun, integrasi BiLSTM ke dalam fuzzy system tetap memberikan peningkatan dibandingkan fuzzy tanpa fitur Deep Learning.
 
