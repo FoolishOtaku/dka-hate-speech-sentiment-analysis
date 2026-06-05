@@ -1,0 +1,45 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+
+# Model / training outputs
+*.h5
+*.keras
+*.pkl
+*.joblib
+*.pickle
+
+# Generated plots from notebook
+lstm_history.png
+membership_functions.png
+mamdani_process.png
+comparison.png
+confusion_matrices.png
+all_systems.png
+
+# Optional: ignore all generated PNGs except README image
+# *.png
+# !dist_label.png
+
+# Large or temporary files
+*.log
+*.tmp
