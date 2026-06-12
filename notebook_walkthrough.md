@@ -208,9 +208,13 @@ Sugeno lebih efisien secara komputasi dan tidak membutuhkan proses integrasi are
 
 **Cell:** `execution_count: 24`
 
-Menampilkan analisis *end-to-end* secara visual pada satu contoh tweet konkret. Menunjukkan bagaimana nilai input crisp diubah menjadi derajat keanggotaan, aturan mana saja yang teraktivasi, kekuatan firing rules, hingga hasil akhir defuzzifikasi Centroid. 
+Menampilkan analisis *end-to-end* secara visual pada satu contoh tweet konkret secara komparatif untuk **Mamdani vs Sugeno** (3 subplot berdampingan):
+- **Subplot 1 (Kiri)**: Nilai Input Variabel Fuzzy untuk sampel terpilih.
+- **Subplot 2 (Tengah)**: Proses defuzzifikasi Mamdani (Centroid / CoG) dengan area agregasi.
+- **Subplot 3 (Kanan)**: Proses defuzzifikasi Sugeno (Weighted Average) dengan visualisasi singleton output.
 
-Grafik proses ini disimpan di `images/mamdani_process.png`.
+Grafik komparatif proses ini disimpan di `images/mamdani_process.png` dan `images/fuzzy_process_comparison.png`.
+
 
 ---
 
@@ -233,7 +237,8 @@ Membandingkan performa regresi (MAE, MSE, RMSE) serta klasifikasi biner antara F
 
 **Korelasi Hasil Mamdani $\leftrightarrow$ Sugeno**: **0.9952** (menunjukkan bahwa kedua metode fuzzy menghasilkan keputusan yang sangat identik dan konsisten satu sama lain).
 
-Grafik perbandingan performa seluruh sistem dan kurva ROC disimpan pada `images/comparison.png` dan `images/all_systems.png`.
+Grafik perbandingan performa komprehensif (Metrik performa biner, Error MAE/RMSE, Korelasi scatter, Distribusi overlay skor Bukan HS, Distribusi overlay skor HS, dan ROC Curve komparatif) disimpan pada `images/comparison.png`, perbandingan final semua 5 sistem disimpan pada `images/all_systems.png`, dan kurva ROC tersimpan di `images/roc_comparison.png`.
+
 
 ---
 
@@ -278,4 +283,20 @@ ROC-AUC                0.9176             0.6375       +0.2801
 6. **Desain Variabel Fuzzy**: Menggambar fungsi keanggotaan segitiga dan trapesium untuk input dan output.
 7. **Inferensi Mamdani & Sugeno**: Mengevaluasi rule-base dan menjalankan defuzzifikasi (Centroid untuk Mamdani, Weighted Average untuk Sugeno).
 8. **Thresholding (F2)**: Menentukan titik klasifikasi optimal (biasanya $\approx 0.25$) untuk melabeli tweet sebagai Hate Speech.
-9. **Evaluasi Komparatif**: Membandingkan regresi dan klasifikasi serta melakukan analisis ablasi tanpa fitur DL.
+9. **Evaluasi Komparatif**: Membandingkan regresi dan klasifikasi secara menyeluruh (Mamdani vs Sugeno) dengan visualisasi komparatif, analisis ketidaksepakatan label, serta analisis ablasi tanpa fitur DL untuk kedua sistem.
+
+---
+
+## 💻 Pengujian Interaktif (Interactive Testing Script)
+
+Anda dapat menguji akurasi model dan fuzzy logic secara interaktif dengan memasukkan teks pilihan Anda menggunakan skrip [interactive_test.py](file:///c:/Users/Mahesa/Documents/Vscode/dka-hate-speech-sentiment-analysis/interactive_test.py).
+
+### Cara Menjalankan:
+Jalankan perintah berikut di terminal VS Code Anda:
+```bash
+.venv\Scripts\python.exe interactive_test.py
+```
+
+Skrip ini akan memuat model BiLSTM dan tokenizer yang telah dilatih, mengekstrak fitur manual linguistik, menjalankan prediksi neural network, dan mengeluarkan hasil analisis fuzzy Mamdani serta Sugeno secara berdampingan untuk dibandingkan secara instan.
+
+
