@@ -22,7 +22,6 @@ Thumbs.db
 .env.*
 
 # Model / training outputs
-*.h5
 *.keras
 *.pkl
 *.joblib
