@@ -16,7 +16,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 # Set Streamlit page layout
 st.set_page_config(
     page_title="Deteksi Hate Speech Hybrid",
-    page_icon="🛡️",
+    page_icon="shield",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -313,7 +313,7 @@ class FuzzySugeno:
 # ── Sidebar Info ──
 st.sidebar.markdown(f"""
 <div style="text-align: center; padding-bottom: 20px;">
-    <h2 style="margin: 0; color: #2196F3;">🛡️ Deteksi Hate Speech</h2>
+    <h2 style="margin: 0; color: #2196F3;">Deteksi Hate Speech</h2>
     <p style="font-size: 0.9rem; color: #666;">Hybrid BiLSTM & Logika Fuzzy</p>
 </div>
 """, unsafe_allow_html=True)
@@ -326,14 +326,14 @@ Aplikasi ini mendeteksi ujaran kebencian (*hate speech*) dan kata-kata abusif pa
 - **Fuzzy Inference System (FIS)** Mamdani & Sugeno menentukan keputusan akhir.
 """)
 
-st.sidebar.markdown("### 📚 Kamus Kata Kunci HS")
+st.sidebar.markdown("### Kamus Kata Kunci HS")
 with st.sidebar.expander("Lihat Kata Kunci HS Relevan"):
     st.write(", ".join(sorted(list(hs_keywords))))
 
 # ── Main Content Header ──
 st.markdown("""
 <div style="background-color: #2196F3; padding: 25px; border-radius: 12px; margin-bottom: 30px; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-    <h1 style="margin: 0; font-size: 2.2rem; font-weight: bold; color: white;">🛡️ Dashboard Analisis Hate Speech Hibrida</h1>
+    <h1 style="margin: 0; font-size: 2.2rem; font-weight: bold; color: white;">Dashboard Analisis Hate Speech Hibrida</h1>
     <p style="margin: 5px 0 0 0; font-size: 1.1rem; opacity: 0.9;">Integrasi BiLSTM Deep Learning & Logika Fuzzy Mamdani/Sugeno</p>
 </div>
 """, unsafe_allow_html=True)
@@ -342,14 +342,14 @@ st.markdown("""
 col_left, col_right = st.columns([1, 1.2])
 
 with col_left:
-    st.markdown("### 📝 Input Tweet")
+    st.markdown("### Input Tweet")
     tweet_input = st.text_area(
         "Masukkan teks tweet untuk diuji:",
         value="",
         height=100
     )
     
-    st.markdown("### 🎯 Parameter Target Ujaran Kebencian")
+    st.markdown("### Parameter Target Ujaran Kebencian")
     st.markdown("<p style='font-size: 0.85rem; color: #555; margin-top: -10px;'>Pilih salah satu atau lebih target spesifik jika tweet tersebut menargetkan entitas berikut:</p>", unsafe_allow_html=True)
     
     col_t1, col_t2 = st.columns(2)
@@ -367,7 +367,7 @@ with col_left:
         1.0 if race else 0.0
     )
     
-    analyze_btn = st.button("🔥 Analisis Tweet", type="primary", use_container_width=True)
+    analyze_btn = st.button("Analisis Tweet", type="primary", use_container_width=True)
 
 if analyze_btn or tweet_input:
     # 1. Preprocess
@@ -399,16 +399,16 @@ if analyze_btn or tweet_input:
     
     # Display results on the right column
     with col_right:
-        st.markdown("### 📊 Ringkasan Deteksi")
+        st.markdown("### Ringkasan Deteksi")
         
         # Binary Classification Result Alert (using optimal thresholds from notebook: Mamdani = 0.4715, Sugeno = 0.5242)
         is_mamdani_hs = score_m >= 0.4715
         is_sugeno_hs = score_s >= 0.5242
         
         if is_mamdani_hs or is_sugeno_hs:
-            st.error(f"🚨 **Kalimat terdeteksi sebagai Ujaran Kebencian (Hate Speech)!**")
+            st.error("**Kalimat terdeteksi sebagai Ujaran Kebencian (Hate Speech).**")
         else:
-            st.success(f"✅ **Kalimat diklasifikasikan sebagai Aman (Bukan Hate Speech).**")
+            st.success("**Kalimat diklasifikasikan sebagai Aman (Bukan Hate Speech).**")
             
         st.write(f"**Teks Hasil Preprocessing:** `{clean_tweet}`")
         
@@ -424,7 +424,7 @@ if analyze_btn or tweet_input:
         m6.metric("Target Specificity", f"{tgt_score:.4f}")
         
         # Fuzzy Mamdani & Sugeno side-by-side results
-        st.markdown("### ⚙️ Output Sistem Fuzzy")
+        st.markdown("### Output Sistem Fuzzy")
         col_m, col_s = st.columns(2)
         
         with col_m:
@@ -437,13 +437,13 @@ if analyze_btn or tweet_input:
             elif score_m < 0.75:
                 st.error("Kategori: **Hate Speech Sedang**")
             else:
-                st.error("Kategori: **Hate Speech Kuat 🔴**")
+                st.error("Kategori: **Hate Speech Kuat**")
             
             # Keputusan optimal threshold (Mamdani = 0.4715)
             if score_m >= 0.4715:
-                st.markdown("Keputusan: **Hate Speech (HS) 🔴**")
+                st.markdown("Keputusan: **Hate Speech (HS)**")
             else:
-                st.markdown("Keputusan: **Bukan Hate Speech (Non-HS) 🟢**")
+                st.markdown("Keputusan: **Bukan Hate Speech (Non-HS)**")
                 
         with col_s:
             st.subheader("Fuzzy Sugeno (W.Avg)")
@@ -455,17 +455,17 @@ if analyze_btn or tweet_input:
             elif score_s < 0.75:
                 st.error("Kategori: **Hate Speech Sedang**")
             else:
-                st.error("Kategori: **Hate Speech Kuat 🔴**")
+                st.error("Kategori: **Hate Speech Kuat**")
             
             # Keputusan optimal threshold (Sugeno = 0.5242)
             if score_s >= 0.5242:
-                st.markdown("Keputusan: **Hate Speech (HS) 🔴**")
+                st.markdown("Keputusan: **Hate Speech (HS)**")
             else:
-                st.markdown("Keputusan: **Bukan Hate Speech (Non-HS) 🟢**")
+                st.markdown("Keputusan: **Bukan Hate Speech (Non-HS)**")
 
     # ── Full Width Visualizations ──
     st.markdown("---")
-    st.markdown("### 📈 Visualisasi Proses Fuzzifikasi, Inferensi & Defuzzifikasi")
+    st.markdown("### Visualisasi Proses Fuzzifikasi, Inferensi & Defuzzifikasi")
     
     # Generate Plots
     x_out = np.linspace(0, 1, 1000)
