@@ -39,7 +39,7 @@ st.markdown("""
 # ── Paths ──
 kamusalay_path = 'data/new_kamusalay.csv'
 abusive_path = 'data/abusive.csv'
-model_path = 'saved_models/bilstm_multioutput.keras'
+model_path = 'saved_models/bilstm_multioutput.h5'
 tokenizer_path = 'saved_models/tokenizer.pkl'
 config_path = 'saved_models/config.pkl'
 
